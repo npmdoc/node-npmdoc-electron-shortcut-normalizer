@@ -1,0 +1,119 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/zeke/electron-shortcut-normalizer#readme">electron-shortcut-normalizer (v1.0.0)</a>
+</h1>
+<h4>Normalize electron keyboard shortcuts so they work on different operating systems</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.electron-shortcut-normalizer">module electron-shortcut-normalizer</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.electron-shortcut-normalizer.electron-shortcut-normalizer">
+            function <span class="apidocSignatureSpan"></span>electron-shortcut-normalizer
+            <span class="apidocSignatureSpan">(shortcut, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.electron-shortcut-normalizer" id="apidoc.module.electron-shortcut-normalizer">module electron-shortcut-normalizer</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.electron-shortcut-normalizer.electron-shortcut-normalizer" id="apidoc.element.electron-shortcut-normalizer.electron-shortcut-normalizer">
+        function <span class="apidocSignatureSpan"></span>electron-shortcut-normalizer
+        <span class="apidocSignatureSpan">(shortcut, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">electron-shortcut-normalizer = function (shortcut, options) {
+
+  if (!options) options = {}
+  if (typeof options === 'string') options = {platform: options}
+
+  shortcut = shortcut
+    .replace(/\s/g, '')
+    .replace(/-/g, '+')
+    .replace(/option/i, 'Alt')
+    .replace(/(commandorcontrol|cmdorctrl|ctrl|command)/i, 'CommandOrControl')
+    .split('+')
+    .map(part =&gt; part[0].toUpperCase() + part.slice(1))
+    .join('+')
+
+  switch (options.platform) {
+    case 'darwin':
+      return shortcut.replace('CommandOrControl', 'Command')
+    case 'linux':
+    case 'freebsd':
+    case 'sunos':
+    case 'win32':
+      return shortcut.replace('CommandOrControl', 'Control')
+    default:
+      return shortcut
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
